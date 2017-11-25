@@ -1,13 +1,20 @@
-FROM node:8
+FROM node:9.2-alpine
 
-# USER node
-ENV INSTALL_PATH /onebedaforms-client
-# RUN mkdir /home/node/.npm-global
-# ENV PATH=/home/node/.npm-global/bin:$PATH
-# ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-RUN npm install -g @angular/cli@1.4.1 --unsafe-perm
+USER node
+ENV HOME /home/node
+ENV INSTALL_PATH ${HOME}/bedafoods-client
+ENV NPM_CONFIG_PREFIX=${HOME}/.npm-global
+ENV PATH=${NPM_CONFIG_PREFIX}/bin:$PATH
+
+RUN mkdir ${NPM_CONFIG_PREFIX}
+RUN npm config set prefix '${NPM_CONFIG_PREFIX}'
+
+RUN npm install -g @angular/cli
+
 RUN mkdir -p $INSTALL_PATH
+
 WORKDIR $INSTALL_PATH
+
 COPY . .
-RUN npm install --unsafe-perm
+RUN npm install
 CMD ["npm", "start"]
