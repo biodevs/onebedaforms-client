@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormService} from '../../shared/form.service';
 
 @Component({
   selector: 'app-form-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formService: FormService) { }
 
   ngOnInit() {
+    this.formService.getForms().subscribe(data => {
+      console.log(data)
+    });
   }
 
 }

@@ -2,7 +2,7 @@ FROM node:9.2-alpine
 
 USER node
 ENV HOME /home/node
-ENV INSTALL_PATH ${HOME}/bedafoods-client
+ENV INSTALL_PATH ${HOME}/onebedaforms-client
 ENV NPM_CONFIG_PREFIX=${HOME}/.npm-global
 ENV PATH=${NPM_CONFIG_PREFIX}/bin:$PATH
 
